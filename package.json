@@ -1,0 +1,32 @@
+{
+  "name": "receipt",
+  "productName": "receipt",
+  "description": "receipt",
+  "version": "1.0.0",
+  "author": "Khushboo <khushboovjvrg018@gmail.com>",
+  "copyright": "© 2018.",
+  "homepage": "http://example.com",
+  "license": "MIT",
+  "main": "app/app.js",
+  "build": {
+    "appId": "com.example.electron-boilerplate-sqlite",
+    "files": [
+      "app/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ]
+  },
+  "scripts": {
+    "postinstall": "install-app-deps",
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "build"
+  },
+  "dependencies": {
+    "sqlite3": "^3.1.8"
+  },
+  "devDependencies": {
+    "electron": "^1.4.10",
+    "electron-builder": "^10.8.1"
+  }
+}
