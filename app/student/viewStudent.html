@@ -1,0 +1,44 @@
+<div ng-controller="viewStudentCtrl">
+<md-content layout-padding layout="row" ng-show="hideNoDataFound">
+  <table style="width:80%;margin: 0px auto;" >
+    <tr>
+      <th>
+        <button ng-click="sortBy('name')">Name</button>
+        <span class="sortorder" ng-show="propertyName === 'name'" ng-class="{reverse: reverse}"></span>
+      </th>
+      <th>
+        <button ng-click="sortBy('father')">Father Name</button>
+        <span class="sortorder" ng-show="propertyName === 'father'" ng-class="{reverse: reverse}"></span>
+      </th>
+      <th>
+        <button ng-click="sortBy('mother')">Mother Name</button>
+        <span class="sortorder" ng-show="propertyName === 'village'" ng-class="{reverse: reverse}"></span>
+      </th>
+      <th>
+        <button ng-click="sortBy('gender')">Gender</button>
+        <span class="sortorder" ng-show="propertyName === 'gender'" ng-class="{reverse: reverse}"></span>
+      </th>
+       <th>
+        <button ng-click="sortBy('class')">Class</button>
+        <span class="sortorder" ng-show="propertyName === 'class'" ng-class="{reverse: reverse}"></span>
+      </th>
+      <th>
+        <button ng-click="sortBy('phone')">Phone</button>
+        <span class="sortorder" ng-show="propertyName === 'phone'" ng-class="{reverse: reverse}"></span>
+      </th>
+      <th ng-show="queryFor == 'All'">Edit</th>
+      <th ng-show="queryFor == 'All'">Delete</th>
+    </tr>
+    <tr ng-repeat="student in students | filter:$ctrl.query | orderBy:propertyName:reverse">
+      <td ><a href="#">{{ student.name }}</a></td>
+      <td>{{ student.fatherName }}</td>
+      <td>{{ student.motherName }}</td>
+      <td>{{ student.gender }}</td>
+      <td>{{ student.className }}</td>
+      <td>{{ student.phone }}</td>
+      <td ng-click="editStudent(student)" ng-show="queryFor == 'All'"><md-tooltip md-direction="bottom">A/c-{{student.id}} - G-{{student.name}}</md-tooltip><i class="material-icons">edit</i></td>
+      <td ng-click="deleteStudent($event,student)" ng-show="queryFor == 'All'"><i class="material-icons" style="color:red">delete</i></td>
+    </tr>
+   </table>
+  </md-content>
+</div>

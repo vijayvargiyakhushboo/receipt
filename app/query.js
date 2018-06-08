@@ -50,6 +50,16 @@ class Query {
     });
     return p;
   }
+
+  selectAll(tableName){
+    let p = new Promise( (resolve, reject)=>{
+      this.db.all(`select * from ${tableName}`, (err, data)=>{
+        if(err) reject(err);
+        resolve(data);
+      });
+    });
+    return p;
+  }
   
 };
 
