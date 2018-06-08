@@ -1,4 +1,4 @@
-reciept.controller('bookCtrl',  function($scope,$timeout,TYPES,SECTION,RECEIPT_TABLE){
+reciept.controller('bookCtrl',  function($rootScope,$scope,$timeout,TYPES,SECTION,RECEIPT_TABLE){
 	$scope.book = {};
 	$scope.types = TYPES;
 	$scope.section = SECTION;

@@ -13,10 +13,14 @@ class Query {
     this.db.run(`CREATE TABLE IF NOT EXISTS student(
        id INTEGER PRIMARY KEY AUTOINCREMENT,
        name           TEXT    NOT NULL,
+       fatherName           TEXT    NOT NULL,
+       motherName           TEXT    NOT NULL,
        address        CHAR(50) NOT NULL,
-       mobile         INT NOT NULL,
-       father         TEXT NOT NULL,
-       mother         TEXT NOT NULL
+       gender         TEXT NOT NULL,
+       phone         INT NOT NULL,
+       email         TEXT NOT NULL,
+       className         INT NOT NULL,
+       dob           TEXT NOT NULL
        )`
      );
   }

@@ -8,18 +8,22 @@ reciept.config(function($routeProvider, $locationProvider) {
         templateUrl : "index2.html"
     });
 });
-reciept.controller('recieptCtrl', function($rootScope,$scope) {
-    $scope.tabs = [
-    {title:'Add Receipt', content:'book/book.html'},
-    {title:'View Receipt', content:'book/book.html'}
-    
-  ];
+reciept.controller('recieptCtrl', function($rootScope,$scope,TAB) {
+   $scope.tabs = TAB;
+   
   
-  $scope.template = $scope.tabs[0];
+  $rootScope.template = $scope.tabs[0];
    $scope.goto = function(page){
   console.log("page:"+page);
   $rootScope.template = $scope.tabs[page];
  };
 })
-.constant('RECEIPT_TABLE', 'receipt');
+ .constant('TAB',[
+    {title:'Add Student', content:'student/student.html'},
+    //{title:'View Student', content:'student/viewStudent.html'},
+    {title:'Add Receipt', content:'book/book.html'},
+    {title:'View Receipt', content:'book/book.html'}
+  ])
+.constant('RECEIPT_TABLE', 'receipt')
+.constant('STUDENT_TABLE', 'student');
 

@@ -1,0 +1,79 @@
+<div ng-controller="studentCtrl">
+	<form name="studentForm">
+   <md-content layout-padding layout="row">
+
+    <md-input-container class="md-block" flex-xs>
+      <label>Student Name</label>
+      <md-icon><i class="material-icons">person</i></md-icon>
+      <input type="text" name="name" ng-model="student.name">
+    </md-input-container>
+
+    <md-input-container class="md-block" flex-xs>
+      <label>Father's Name</label>
+      <md-icon><i class="material-icons">person</i></md-icon>
+      <input name="fatherName" type="text" ng-model="student.fatherName">
+    </md-input-container>
+
+    <md-input-container class="md-block" flex-xs>
+      <label>Mother's Name</label>
+      <md-icon><i class="material-icons">person</i></md-icon>
+      <input name="motherName" type="text" ng-model="student.motherName">
+    </md-input-container>
+
+
+  </md-content>
+
+       	<md-content layout-padding layout="row">
+           <md-input-container class="md-block" flex-xs>
+            <label>Date</label>
+            <md-datepicker name="dob" ng-model="student.dob" md-open-on-focus required></md-datepicker>
+          </md-input-container>
+          
+          <md-input-container flex-xs>
+            <label>Gender</label>
+            <md-icon><i class="material-icons">book</i></md-icon>
+             <md-select name="gender" ng-model="student.gender" ng-required="true">
+              <md-option><em>None</em></md-option>
+              <md-option ng-repeat="gen in gender" ng-value="gen">
+                {{gen}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+
+          <md-input-container flex-xs>
+            <label>Address</label>
+            <md-icon><i class="material-icons">place</i></md-icon>
+            <input type="text" name="address" ng-model="student.address" ng-required="true">
+            
+          </md-input-container>
+
+
+        </md-content>
+
+          <md-content layout-padding layout="row">
+                     
+          <md-input-container flex-xs>
+            <label>Phone</label>
+            <md-icon><i class="material-icons">phone</i></md-icon>
+            <input type="text" name="phone" ng-model="student.phone" ng-required="true">
+          </md-input-container>
+
+          <md-input-container flex-xs>
+            <label>Email</label>
+            <md-icon><i class="material-icons">place</i></md-icon>
+            <input type="text" name="email" ng-model="student.email" ng-required="true">
+          </md-input-container>
+
+           <md-input-container flex-xs>
+            <label>Class</label>
+            <md-icon><i class="material-icons">book</i></md-icon>
+            <input type="text" name="className" ng-model="student.className" ng-required="true">
+          </md-input-container>
+
+
+        </md-content>
+        <md-button class="md-raised md-primary" ng-click="submitStudent(student)">Submit</md-button>
+        <md-button class="md-raised md-warn" ng-click="resetStudent()">Reset</md-button>
+      </form>
+
+    </div>
