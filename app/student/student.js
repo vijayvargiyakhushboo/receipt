@@ -1,6 +1,7 @@
-reciept.controller('studentCtrl',  function($rootScope,$timeout,$scope,GENDER,STUDENT_TABLE){
+reciept.controller('studentCtrl',  function($rootScope,$timeout,$scope,GENDER,STUDENT_TABLE,CLASS){
 	$scope.student = {'name': '', 'fatherName': '', 'motherName': '', 'dob': '', 'className': '','address': '','phone': '','email': '','className':'', 'gender': ''};
 	$scope.gender = GENDER;
+	$scope.className = CLASS;
 
 	$scope.resetStudent = ()=> {
 		$scope.student= {};
@@ -23,4 +24,5 @@ reciept.controller('studentCtrl',  function($rootScope,$timeout,$scope,GENDER,ST
 		});
 	};
 
-}).constant('GENDER', ['Female','Male']);
+}).constant('GENDER', ['Female','Male'])
+.constant('CLASS', ['Nursery','LKG','UKG','1','2','3','4','5','6','7','8','9','10','11','12']);

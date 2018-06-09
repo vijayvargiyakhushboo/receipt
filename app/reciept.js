@@ -4,8 +4,8 @@ const {dialog} = require('electron').remote
 let reciept = angular.module('reciept', ['ngRoute', 'ngMaterial', 'ngMessages']);
 reciept.config(function($routeProvider, $locationProvider,$mdThemingProvider) {
    $mdThemingProvider.theme('default')
-    /*.primaryPalette('pink')
-    .accentPalette('orange');*/
+    .primaryPalette('pink')
+    .accentPalette('orange');
     $routeProvider
     .when("/", {
         templateUrl : "index2.html"
@@ -24,8 +24,8 @@ reciept.controller('recieptCtrl', function($rootScope,$scope,TAB) {
  .constant('TAB',[
     {title:'Add Student', content:'student/student.html'},
     {title:'View Student', content:'student/viewStudent.html'},
-    {title:'Add Receipt', content:'book/book.html'},
-    {title:'View Receipt', content:'book/book.html'}
+    {title:'Add Receipt', content:'receipt/receipt.html'},
+    {title:'View Receipt', content:'receipt/receiptView.html'}
   ])
 .constant('RECEIPT_TABLE', 'receipt')
 .constant('STUDENT_TABLE', 'student');
