@@ -4,8 +4,8 @@ const {dialog} = require('electron').remote
 let reciept = angular.module('reciept', ['ngRoute', 'ngMaterial', 'ngMessages']);
 reciept.config(function($routeProvider, $locationProvider,$mdThemingProvider) {
    $mdThemingProvider.theme('default')
-    /*.primaryPalette('pink')
-    .accentPalette('orange');*/
+    .primaryPalette('pink')
+    .accentPalette('orange');
     $routeProvider
     .when("/", {
         templateUrl : "index2.html"
