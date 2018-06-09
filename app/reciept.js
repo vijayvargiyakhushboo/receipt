@@ -25,7 +25,7 @@ reciept.controller('recieptCtrl', function($rootScope,$scope,TAB) {
     {title:'Add Student', content:'student/student.html'},
     {title:'View Student', content:'student/viewStudent.html'},
     {title:'Add Receipt', content:'receipt/receipt.html'},
-    {title:'View Receipt', content:'receipt/receipt.html'}
+    {title:'View Receipt', content:'receipt/receiptView.html'}
   ])
 .constant('RECEIPT_TABLE', 'receipt')
 .constant('STUDENT_TABLE', 'student');
