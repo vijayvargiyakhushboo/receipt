@@ -1,68 +1,80 @@
 <div ng-controller="receiptCtrl">
 	<form name="receiptForm">
-		 <md-content layout-padding layout="row">
+   <md-content layout-padding layout="row">
 
-          <md-input-container class="md-block" flex-xs>
-            <label>Date</label>
-            <md-datepicker name="date" ng-model="receipt.date" md-min-date="minDate" md-max-date="maxDate" md-open-on-focus required></md-datepicker>
-          </md-input-container>
+    <md-input-container class="md-block" flex-xs>
+      <label>Date</label>
+      <md-datepicker name="date" ng-model="receipt.date" md-min-date="minDate" md-max-date="maxDate" md-open-on-focus required ng-required="true"></md-datepicker>
+      <div ng-messages="receiptForm.date.$error" role="alert" multiple>
+        <div ng-message="required" class="my-message">You must supply a date.</div>
+      </div>
+    </md-input-container>
 
-          <md-input-container class="md-block" flex-xs>
-            <label>Student Name</label>
-            <md-icon><i class="material-icons">person</i></md-icon>
-            <input name="studentName" type="text" ng-model="receipt.studentName">
-          </md-input-container>
+    <md-input-container class="md-block" flex-xs>
+      <label>Student Name</label>
+      <md-icon><i class="material-icons">person</i></md-icon>
+      <input name="studentName" type="text" ng-model="receipt.studentName" ng-required="true">
+      <div ng-messages="receiptForm.studentName.$error" role="alert" ng-if="receiptForm.studentName.$touched">
+        <div ng-message="required" class="my-message">You must supply a student name.</div>
+      </div>
 
-           <md-input-container class="md-block" flex-xs>
-            <label>Amount</label>
-            <md-icon><i class="material-icons">person</i></md-icon>
-            <input name="amount" type="text" ng-model="receipt.amount">
-          </md-input-container>
+    </md-input-container>
 
-          
-      </md-content>
+    <md-input-container class="md-block" flex-xs>
+      <label>Amount</label>
+      <md-icon><i class="material-icons">person</i></md-icon>
+      <input name="amount" type="text" ng-model="receipt.amount" ng-min="100" ng-required="true">
+      <div ng-messages="receiptForm.amount.$error" role="alert" multiple>
+        <div ng-message="required" class="my-message">You must supply amount</div>
+        <div ng-message="min" class="my-message">Amount should be greater than or equal to 100.</div>
+      </div>
+    </md-input-container>
+
+    
+  </md-content>
 
        <!--  
        
         <md-content layout-padding layout="row"> -->
         	<md-content layout-padding layout="row">
             <md-input-container class="md-block" flex-xs>
-            <label>Class</label>
-            <md-icon><i class="material-icons">person</i></md-icon>
-            <input name="class" type="text" ng-model="receipt.class">
-          </md-input-container>
-          
-            <md-input-container flex-xs>
-            <label>Section</label>
-            <md-icon><i class="material-icons">book</i></md-icon>
-            <md-select name="section" ng-model="receipt.section" ng-required="true">
-            <md-option><em>None</em></md-option>
-            <md-option ng-repeat="section in section" ng-value="section">
-            {{section}}
-            </md-option>
-            </md-select>
+              <label>Class</label>
+              <md-icon><i class="material-icons">person</i></md-icon>
+              <input name="class" type="text" ng-model="receipt.class" ng-required="true">
+              <div ng-messages="receiptForm.class.$error" role="alert" multiple>
+                <div ng-message="required" class="my-message">You must supply class name.</div>
+              </div>
             </md-input-container>
-
+            
             <md-input-container flex-xs>
+              <label>Section</label>
+              <md-icon><i class="material-icons">book</i></md-icon>
+              <md-select name="section" ng-model="receipt.section" ng-required="true">
+                <md-option><em>None</em></md-option>
+                <md-option ng-repeat="section in section" ng-value="section">
+                  {{section}}
+                </md-option>
+              </md-select>
+              <div ng-messages="receiptForm.section.$error" role="alert" multiple>
+               <div ng-message="required" class="my-message">You must supply section.</div>
+             </div>
+
+           </md-input-container>
+
+           <md-input-container flex-xs>
             <label>Fee Type</label>
             <md-icon><i class="material-icons">book</i></md-icon>
             <md-select name="feeType" ng-model="receipt.feeType" ng-required="true">
-            <md-option><em>None</em></md-option>
-            <md-option ng-repeat="type in types" ng-value="type">
-            {{type}}
-            </md-option>
+              <md-option><em>None</em></md-option>
+              <md-option ng-repeat="type in types" ng-value="type">
+                {{type}}
+              </md-option>
             </md-select>
-            </md-input-container>
+          </md-input-container>
 
-           <!-- <md-input-container class="md-block" flex-xs>
-            <label>Subject</label>
-            <md-icon><i class="material-icons">info</i></md-icon>
-            <input name="subject" type="text">
-            
-                     </md-input-container> -->
         </md-content>
-        <md-button class="md-raised md-primary" ng-click="submitReceipt(receipt)">Submit</md-button>
+        <md-button class="md-raised md-primary" ng-disabled="receiptForm.$invalid" ng-click="submitReceipt(receipt)">Submit</md-button>
         <md-button class="md-raised md-warn" ng-click="resetCustomer()">Reset</md-button>
-	</form>
+      </form>
 
     </div>
