@@ -22,7 +22,7 @@
 
     <md-input-container class="md-block" flex-xs>
       <label>Amount</label>
-      <md-icon><i class="material-icons">person</i></md-icon>
+      <md-icon><i class="material-icons">money</i></md-icon>
       <input name="amount" type="text" ng-model="receipt.amount" ng-min="100" ng-required="true">
       <div ng-messages="receiptForm.amount.$error" role="alert" multiple>
         <div ng-message="required" class="my-message">You must supply amount</div>
@@ -39,7 +39,7 @@
         	<md-content layout-padding layout="row">
             <md-input-container class="md-block" flex-xs>
               <label>Class</label>
-              <md-icon><i class="material-icons">person</i></md-icon>
+              <md-icon><i class="material-icons">class</i></md-icon>
               <input name="class" type="text" ng-model="receipt.class" ng-required="true">
               <div ng-messages="receiptForm.class.$error" role="alert" multiple>
                 <div ng-message="required" class="my-message">You must supply class name.</div>
@@ -48,7 +48,7 @@
             
             <md-input-container flex-xs>
               <label>Section</label>
-              <md-icon><i class="material-icons">book</i></md-icon>
+              <md-icon><i class="material-icons">list_alt</i></md-icon>
               <md-select name="section" ng-model="receipt.section" ng-required="true">
                 <md-option><em>None</em></md-option>
                 <md-option ng-repeat="section in section" ng-value="section">
