@@ -1,5 +1,4 @@
-reciept.controller('bookCtrl',  function($rootScope,$scope,$timeout,TYPES,SECTION,RECEIPT_TABLE){
-	$scope.book = {};
+reciept.controller('receiptCtrl',  function($rootScope,$scope,$timeout,TYPES,SECTION,RECEIPT_TABLE){
 	$scope.types = TYPES;
 	$scope.section = SECTION;
 	$scope.receipt = {studentName: '', date : '', class: '', section: '', feeType: '', amount: ''};

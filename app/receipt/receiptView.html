@@ -1,0 +1,44 @@
+<div ng-controller="viewReceiptCtrl">
+  <md-content layout-padding layout="row" ng-show="hideNoDataFound">
+    <table style="width:80%;margin: 0px auto;" >
+      <tr>
+        <th>
+          <button ng-click="sortBy('date')">Date</button>
+          <span class="sortorder" ng-show="propertyName === 'date'" ng-class="{reverse: reverse}"></span>
+        </th>
+        <th>
+          <button ng-click="sortBy('studentName')">Student Name</button>
+          <span class="sortorder" ng-show="propertyName === 'studentName'" ng-class="{reverse: reverse}"></span>
+        </th>
+        <th>
+          <button ng-click="sortBy('amount')">Amout</button>
+          <span class="sortorder" ng-show="propertyName === 'amount'" ng-class="{reverse: reverse}"></span>
+        </th>
+        <th>
+          <button ng-click="sortBy('class')">Class</button>
+          <span class="sortorder" ng-show="propertyName === 'class'" ng-class="{reverse: reverse}"></span>
+        </th>
+        <th>
+          <button ng-click="sortBy('section')">Section</button>
+          <span class="sortorder" ng-show="propertyName === 'section'" ng-class="{reverse: reverse}"></span>
+        </th>
+        <th>
+          <button ng-click="sortBy('feeType')">Fee Type</button>
+          <span class="sortorder" ng-show="propertyName === 'feeType'" ng-class="{reverse: reverse}"></span>
+        </th>
+        <th >Edit</th>
+        <th >Delete</th>
+      </tr>
+      <tr ng-repeat="rc in receipt | filter:$ctrl.query | orderBy:propertyName:reverse">
+        <td>{{ rc.date | date:"EEE,d/M/yy"  }}</td>
+        <td>{{ rc.studentName }}</td>
+        <td>{{ rc.amount }}</td>
+        <td>{{ rc.class }}</td>
+        <td>{{ rc.section }}</td>
+        <td>{{ rc.feeType }}</td>
+        <td ng-click="editReceipt(receipt)"><md-tooltip md-direction="bottom">{{rc.studentName}} - CL-{{rc.class}}</md-tooltip><i class="material-icons">edit</i></td>
+        <td ng-click="deleteReceipt($event,student)"><md-tooltip md-direction="bottom">Delete ? {{rc.studentName}} </md-tooltip><i class="material-icons" style="color:red">delete</i></td>
+      </tr>
+    </table>
+  </md-content>
+</div> 
