@@ -36,7 +36,7 @@
         <td>{{ student.gender }}</td>
         <td>{{ student.className }}</td>
         <td>{{ student.phone }}</td>
-        <td ng-click="editStudent(student)"><md-tooltip md-direction="bottom">{{student.name}} - CL-{{student.className}}</md-tooltip><i class="material-icons">edit</i></td>
+        <td><a href="#!/student/edit/{{student.id}}"><md-tooltip md-direction="bottom">{{student.name}} - CL-{{student.className}}</md-tooltip><i class="material-icons">edit</i></a></td>
         <td ng-click="deleteStudent($event,student)"><md-tooltip md-direction="bottom">Delete ? {{student.name}} </md-tooltip><i class="material-icons" style="color:red">delete</i></td>
       </tr>
     </table>

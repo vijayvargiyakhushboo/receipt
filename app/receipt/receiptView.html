@@ -30,7 +30,7 @@
         <th >Delete</th>
       </tr>
       <tr ng-repeat="rc in receipt | filter:$ctrl.query | orderBy:propertyName:reverse">
-        <td>{{ rc.date }}</td>
+        <td>{{ rc.date | date:"EEE,d/M/yy"  }}</td>
         <td>{{ rc.studentName }}</td>
         <td>{{ rc.amount }}</td>
         <td>{{ rc.class }}</td>
