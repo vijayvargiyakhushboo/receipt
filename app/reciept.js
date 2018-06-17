@@ -2,15 +2,19 @@ const {shell} = require('electron')
 const {dialog} = require('electron').remote
 
 let reciept = angular.module('reciept', ['ngRoute', 'ngMaterial', 'ngMessages']);
-reciept.controller('recieptCtrl', function($rootScope,$scope,TAB) {
+
+reciept.controller('recieptCtrl', function($rootScope,$scope,$location, $timeout, TAB) {
    $scope.tabs = TAB;
    
   
   $rootScope.template = $scope.tabs[0];
    $scope.goto = function(page){
-  console.log("page:"+page);
-  $rootScope.template = $scope.tabs[page];
- };
+    console.log("page:"+page);
+    $rootScope.template = $scope.tabs[page];
+    $timeout(function(){
+      $location.path($rootScope.template.route);
+    }, 0);
+   };
 })
  .constant('TAB',[
     {title:'Add Student', route:'/'},
@@ -26,7 +30,7 @@ reciept.config(function($routeProvider, $locationProvider,$mdThemingProvider) {
     .primaryPalette('pink')
     .accentPalette('orange');
     $routeProvider
-.when("/", {
+    .when("/", {
         templateUrl : 'file://' + __dirname + '/student/student.html'
     })
     .when("/student", {

@@ -28,15 +28,13 @@
     <div ng-app="reciept" ng-controller="recieptCtrl" ng-cloak>
   <md-content>
     <md-tabs md-dynamic-height md-border-bottom>
-      <md-tab ng-click="goto($index)" ng-repeat="tab in tabs" label="{{tab.title}}" ng-href="#!{{tab.route}}">
+      <md-tab ng-click="goto($index)" ng-repeat="tab in tabs" label="{{tab.title}}" >
        <!--  <div ng-include="template.content" ng-cloak></div> -->
-       <div ng-view ></div>
       </md-tab>
-      
      
     </md-tabs>
   </md-content>
- <!--  <div ng-view ></div> -->
+  <div ng-view ></div>
 </div>
     <script src="./db.js"></script>
     <script src="lib/angular.min.js"></script>
