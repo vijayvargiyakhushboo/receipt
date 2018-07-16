@@ -3,9 +3,8 @@ const {dialog} = require('electron').remote
 
 let reciept = angular.module('reciept', ['ngRoute', 'ngMaterial', 'ngMessages']);
 
-reciept.controller('recieptCtrl', function($rootScope,$scope,$location, $timeout, TAB) {
+reciept.controller('recieptCtrl', function($rootScope,$scope,$mdDialog,$location, $timeout, TAB) {
    $scope.tabs = TAB;
-   
   
   $rootScope.template = $scope.tabs[0];
    $scope.goto = function(page){
