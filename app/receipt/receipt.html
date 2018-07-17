@@ -33,48 +33,50 @@
     
   </md-content>
 
-       <!--  
-       
-        <md-content layout-padding layout="row"> -->
-        	<md-content layout-padding layout="row">
-            <md-input-container class="md-block" flex-xs>
-              <label>Class</label>
-              <md-icon><i class="material-icons">class</i></md-icon>
-              <input name="class" type="text" ng-model="receipt.class" ng-required="true">
-              <div ng-messages="receiptForm.class.$error" role="alert" multiple>
-                <div ng-message="required" class="my-message">You must supply class name.</div>
-              </div>
-            </md-input-container>
-            
-            <md-input-container flex-xs>
-              <label>Section</label>
-              <md-icon><i class="material-icons">list_alt</i></md-icon>
-              <md-select name="section" ng-model="receipt.section" ng-required="true">
-                <md-option><em>None</em></md-option>
-                <md-option ng-repeat="section in section" ng-value="section">
-                  {{section}}
-                </md-option>
-              </md-select>
-              <div ng-messages="receiptForm.section.$error" role="alert" multiple>
-               <div ng-message="required" class="my-message">You must supply section.</div>
-             </div>
+  <md-content layout-padding layout="row">
+    <md-input-container class="md-block" flex-xs>
+      <label>Class</label>
+      <md-icon><i class="material-icons">class</i></md-icon>
+      <md-select name="class" type="text" ng-model="receipt.class" ng-required="true">
+        <md-option><em>None</em></md-option>
+        <md-option ng-repeat="cl in class" ng-value="cl">
+          {{cl}}
+        </md-option>
+      </md-select>
+      <div ng-messages="receiptForm.class.$error" role="alert" multiple>
+        <div ng-message="required" class="my-message">You must supply class name.</div>
+      </div>
+    </md-input-container>
+    
+    <md-input-container flex-xs>
+      <label>Section</label>
+      <md-icon><i class="material-icons">list_alt</i></md-icon>
+      <md-select name="section" ng-model="receipt.section" ng-required="true">
+        <md-option><em>None</em></md-option>
+        <md-option ng-repeat="section in section" ng-value="section">
+          {{section}}
+        </md-option>
+      </md-select>
+      <div ng-messages="receiptForm.section.$error" role="alert" multiple>
+       <div ng-message="required" class="my-message">You must supply section.</div>
+     </div>
 
-           </md-input-container>
+   </md-input-container>
 
-           <md-input-container flex-xs>
-            <label>Fee Type</label>
-            <md-icon><i class="material-icons">book</i></md-icon>
-            <md-select name="feeType" ng-model="receipt.feeType" ng-required="true">
-              <md-option><em>None</em></md-option>
-              <md-option ng-repeat="type in types" ng-value="type">
-                {{type}}
-              </md-option>
-            </md-select>
-          </md-input-container>
+   <md-input-container flex-xs>
+    <label>Fee Type</label>
+    <md-icon><i class="material-icons">book</i></md-icon>
+    <md-select name="feeType" ng-model="receipt.feeType" ng-required="true">
+      <md-option><em>None</em></md-option>
+      <md-option ng-repeat="type in types" ng-value="type">
+        {{type}}
+      </md-option>
+    </md-select>
+  </md-input-container>
 
-        </md-content>
-        <md-button class="md-raised md-primary" ng-disabled="receiptForm.$invalid" ng-click="submitReceipt(receipt)">Submit</md-button>
-        <md-button class="md-raised md-warn" ng-click="resetCustomer()">Reset</md-button>
-      </form>
+</md-content>
+<md-button class="md-raised md-primary" ng-disabled="receiptForm.$invalid" ng-click="submitReceipt(receipt)">Submit</md-button>
+<md-button class="md-raised md-warn" ng-click="resetCustomer()">Reset</md-button>
+</form>
 
-    </div>
+</div>

@@ -15,6 +15,7 @@ reciept.controller('viewReceiptCtrl', function($rootScope ,$scope,RECEIPT_TABLE,
         $timeout(()=>{
           $scope.hideNoDataFound = true;
           $scope.receipt = rows;
+          console.log("receipt... ",$scope.receipt);
           if(rows && rows.length == 0)
             $scope.hideNoDataFound = false;
         },0);

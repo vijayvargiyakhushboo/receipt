@@ -1,7 +1,8 @@
-reciept.controller('receiptCtrl',  function($rootScope,$scope,$timeout,TYPES,SECTION,RECEIPT_TABLE){
+reciept.controller('receiptCtrl',  function($rootScope,$scope,$timeout,TYPES,SECTION,RECEIPT_TABLE,CLASS){
 	$scope.types = TYPES;
 	$scope.section = SECTION;
-	$scope.receipt = {studentName: '', date : '', class: '', section: '', feeType: '', amount: ''};
+	$scope.class = CLASS;
+	$scope.receipt = {studentName: '', date : '', class: '', section: '', feeType: '', amount: '',deleted: 0};
 
 	$scope.resetReceipt = ()=>{
 		$scope.receipt ={};
@@ -17,12 +18,6 @@ reciept.controller('receiptCtrl',  function($rootScope,$scope,$timeout,TYPES,SEC
 			$timeout(()=>{
 				$scope.resetReceipt();
 			},0);
-			/*$mdToast.show(
-				$mdToast.simple()
-				.textContent('Transaction Added.')
-				.position('bottom right')
-				.hideDelay(3000)
-				);*/
 		})
 		.catch((err)=>{
 			console.error('err, receipt insertion', err);
@@ -31,4 +26,5 @@ reciept.controller('receiptCtrl',  function($rootScope,$scope,$timeout,TYPES,SEC
 
 })
 .constant('TYPES', ['Admission Fee' , 'Tution Fee', 'Exam Fee', 'Other Fee'])
-.constant('SECTION', ['A','B','C']);
+.constant('SECTION', ['A','B','C'])
+.constant('CLASS', ['Nursery','LKG','UKG','1','2','3','4','5','6','7','8','9','10','11','12']);

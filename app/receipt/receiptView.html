@@ -36,8 +36,8 @@
         <td>{{ rc.class }}</td>
         <td>{{ rc.section }}</td>
         <td>{{ rc.feeType }}</td>
-        <td ng-click="editReceipt(receipt)"><md-tooltip md-direction="bottom">{{rc.studentName}} - CL-{{rc.class}}</md-tooltip><i class="material-icons">edit</i></td>
-        <td ng-click="deleteReceipt($event,student)"><md-tooltip md-direction="bottom">Delete ? {{rc.studentName}} </md-tooltip><i class="material-icons" style="color:red">delete</i></td>
+        <td><a href="#!/receipt/edit/{{rc.id}}"><md-tooltip md-direction="bottom">{{rc.studentName}} - CL-{{rc.class}}</md-tooltip><i class="material-icons">edit</i></a></td>
+        <td><a href="#!/receipt/delete/{{rc.id}}"><md-tooltip md-direction="bottom">Delete ? {{rc.studentName}} </md-tooltip><i class="material-icons" style="color:red">delete</i></a></td>
       </tr>
     </table>
   </md-content>
