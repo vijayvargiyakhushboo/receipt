@@ -43,6 +43,9 @@ reciept.config(function($routeProvider, $locationProvider,$mdThemingProvider) {
     })
     .when("/receipt", {
         templateUrl : 'file://' + __dirname + '/receipt/receiptView.html'
+    })
+    .when("/receipt/edit/:id", {
+        templateUrl : 'file://' + __dirname + '/receipt/editReceipt.html'
     });
     
     $locationProvider.hashPrefix('!');

@@ -38,7 +38,7 @@ app.on('ready', ()=> {
       splash.destroy();
       mainWindow.show();
       mainWindow.maximize();
-    }, 3000);
+    }, 1000);
 
   });
 
