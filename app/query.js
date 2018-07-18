@@ -29,13 +29,13 @@ class Query {
     this.db.run(`CREATE TABLE IF NOT EXISTS receipt (
      id INTEGER PRIMARY KEY AUTOINCREMENT,
      studentName    TEXT   NOT NULL,
-     section        TEXT   NOT NULL,
-     amount         INT    NOT NULL,
      date           TEXT   NOT NULL, 
-     
      class        TEXT    NOT NULL,
-     feeType      TEXT    NOT NULL,
-     deleted       INT DEFAULT (0)
+     admissionFee INT    NOT NULL,
+     tutionFee    INT    NOT NULL,
+     examFee      INT    NOT NULL,
+     otherFee     INT    NOT NULL,
+     deleted      INT DEFAULT (0)
      )`
      );
   }
