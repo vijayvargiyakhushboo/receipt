@@ -47,7 +47,7 @@
         <div ng-message="required" class="my-message">You must supply class name.</div>
       </div>
     </md-input-container>
-    
+
     <md-input-container flex-xs>
       <label>Section</label>
       <md-icon><i class="material-icons">list_alt</i></md-icon>
@@ -62,19 +62,26 @@
      </div>
 
    </md-input-container>
+ </md-content>
 
-   <md-input-container flex-xs>
-    <label>Fee Type</label>
-    <md-icon><i class="material-icons">book</i></md-icon>
-    <md-select name="feeType" ng-model="receipt.feeType" ng-required="true">
-      <md-option><em>None</em></md-option>
-      <md-option ng-repeat="type in types" ng-value="type">
-        {{type}}
-      </md-option>
-    </md-select>
-  </md-input-container>
+ <md-content layout-padding layout="row">
+  <!-- <md-icon><i class="material-icons">money</i></md-icon> -->
+  <div layout="row" layout-wrap flex>
+    <div class="demo-select-all-checkboxes" ng-repeat="type in types">
+      <md-input-container class="md-block" flex="10">
+        <md-checkbox name="fee_type">
+         {{ type }}
+       </md-checkbox>
+     </md-input-container>
 
+     <md-input-container class="md-block" flex="33">
+       <label>{{type}}</label>
+       <input name="{{type}}_amount" type="text" > 
+     </md-input-container>
+   </div>
+ </div>
 </md-content>
+
 <md-button class="md-raised md-primary" ng-disabled="receiptForm.$invalid" ng-click="submitReceipt(receipt)">Submit</md-button>
 <md-button class="md-raised md-warn" ng-click="resetCustomer()">Reset</md-button>
 </form>
