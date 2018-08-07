@@ -1,5 +1,5 @@
 <div ng-controller="receiptCtrl">
-	<form name="receiptForm">
+	<form name="receiptForm" ng-init="thisFee=false">
    <md-content layout-padding layout="row">
 
     <md-input-container class="md-block" flex-xs>
@@ -10,30 +10,6 @@
       </div>
     </md-input-container>
 
-    <md-input-container class="md-block" flex-xs>
-      <label>Student Name</label>
-      <md-icon><i class="material-icons">person</i></md-icon>
-      <input name="studentName" type="text" ng-model="receipt.studentName" ng-required="true">
-      <div ng-messages="receiptForm.studentName.$error" role="alert" ng-if="receiptForm.studentName.$touched">
-        <div ng-message="required" class="my-message">You must supply a student name.</div>
-      </div>
-
-    </md-input-container>
-
-    <md-input-container class="md-block" flex-xs>
-      <label>Amount</label>
-      <md-icon><i class="material-icons">money</i></md-icon>
-      <input name="amount" type="text" ng-model="receipt.amount" ng-min="100" ng-required="true">
-      <div ng-messages="receiptForm.amount.$error" role="alert" multiple>
-        <div ng-message="required" class="my-message">You must supply amount</div>
-        <div ng-message="min" class="my-message">Amount should be greater than or equal to 100.</div>
-      </div>
-    </md-input-container>
-
-    
-  </md-content>
-
-  <md-content layout-padding layout="row">
     <md-input-container class="md-block" flex-xs>
       <label>Class</label>
       <md-icon><i class="material-icons">class</i></md-icon>
@@ -47,34 +23,68 @@
         <div ng-message="required" class="my-message">You must supply class name.</div>
       </div>
     </md-input-container>
+
+    <md-input-container class="md-block" flex-xs>
+      <label>Student Name</label>
+      <md-icon><i class="material-icons">person</i></md-icon>
+    </md-input-container>
+
+    <md-autocomplete class="pad" flex-xs  required
+    md-no-cache="true" 
+    md-input-name="name"
+    md-input-minlength="4"
+    md-input-maxlength="20"
+    md-selected-item="stud" 
+    md-search-text="searchText" 
+    md-items="item in searchStudent(searchText)" 
+    md-item-text="item.name"
+    placeholder="Student"
+    md-require-match
     
-    <md-input-container flex-xs>
-      <label>Section</label>
-      <md-icon><i class="material-icons">list_alt</i></md-icon>
-      <md-select name="section" ng-model="receipt.section" ng-required="true">
-        <md-option><em>None</em></md-option>
-        <md-option ng-repeat="section in section" ng-value="section">
-          {{section}}
-        </md-option>
-      </md-select>
-      <div ng-messages="receiptForm.section.$error" role="alert" multiple>
-       <div ng-message="required" class="my-message">You must supply section.</div>
-     </div>
+    md-floating-label="Name">
 
-   </md-input-container>
+  <md-item-template>
+                  <span md-highlight-text="searchText">{{item.name}}</span>
+                </md-item-template>
+                <md-not-found>
+                  No student found for "{{searchText}}".
+                </md-not-found>
+      <div ng-messages="receiptForm.studentName.$error" role="alert" ng-if="receiptForm.studentName.$touched">
+      <div ng-message="required" class="my-message">You must supply a student name.</div>
+      </div>
 
-   <md-input-container flex-xs>
-    <label>Fee Type</label>
-    <md-icon><i class="material-icons">book</i></md-icon>
-    <md-select name="feeType" ng-model="receipt.feeType" ng-required="true">
-      <md-option><em>None</em></md-option>
-      <md-option ng-repeat="type in types" ng-value="type">
-        {{type}}
-      </md-option>
-    </md-select>
-  </md-input-container>
+</md-autocomplete>
 
+<!-- 
+      <input name="studentName" type="text" ng-model="receipt.studentName" ng-required="true">
+      <div ng-messages="receiptForm.studentName.$error" role="alert" ng-if="receiptForm.studentName.$touched">
+        <div ng-message="required" class="my-message">You must supply a student name.</div>
+      </div> -->
+
+    </md-input-container>
+
+  
+  </md-content>
+
+ <md-content layout-padding layout="row">
+  <!-- <md-icon><i class="material-icons">money</i></md-icon> -->
+  <div layout="row" layout-wrap flex>
+    <div class="demo-select-all-checkboxes" ng-repeat="type in types">
+      <md-input-container class="md-block" flex="10">
+        <md-checkbox name="fee_type" ng-model="thisFee">
+         {{ type }}
+       </md-checkbox>
+     </md-input-container>
+
+     <md-input-container class="md-block" flex="33">
+       <label>{{type}}</label>
+       <input name="{{type}}_amount"  ng-disabled="!thisFee" type="text" ng-minlength="3" ng-maxlength="6" ng-min="100" ng-max="200000" required> 
+       
+     </md-input-container>
+   </div>
+ </div>
 </md-content>
+
 <md-button class="md-raised md-primary" ng-disabled="receiptForm.$invalid" ng-click="submitReceipt(receipt)">Submit</md-button>
 <md-button class="md-raised md-warn" ng-click="resetCustomer()">Reset</md-button>
 </form>
