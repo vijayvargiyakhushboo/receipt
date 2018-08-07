@@ -34,10 +34,11 @@
     md-input-name="name"
     md-input-minlength="4"
     md-input-maxlength="20"
-    md-selected-item="student" 
-    md-items="item in searchStudent(searchText)" 
+    md-selected-item="stud" 
     md-search-text="searchText" 
+    md-items="item in searchStudent(searchText)" 
     md-item-text="item.name"
+    placeholder="Student"
     md-require-match
     
     md-floating-label="Name">
@@ -77,7 +78,8 @@
 
      <md-input-container class="md-block" flex="33">
        <label>{{type}}</label>
-       <input name="{{type}}_amount" ng-disabled="thisFee" type="text" > 
+       <input name="{{type}}_amount"  ng-disabled="!thisFee" type="text" ng-minlength="3" ng-maxlength="6" ng-min="100" ng-max="200000" required> 
+       
      </md-input-container>
    </div>
  </div>

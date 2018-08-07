@@ -28,8 +28,8 @@ reciept.controller('receiptCtrl',  function($rootScope,$scope,$timeout,TYPES,REC
       let result = [];
       let student = [];
       console.log(".. ",$scope.student);
-      for(let stud of $scope.student){
-        stud.name.toLowerCase().indexOf(keyword.toLowerCase()) > -1 ? result.push(stud) : student.push(stud);
+      for(let st of $scope.student){
+        st.name.toLowerCase().indexOf(keyword.toLowerCase()) > -1 ? result.push(st) : student.push(st);
       }
       return result.length > 0 ? result :student;
     };
