@@ -42,6 +42,7 @@ reciept.controller('viewStudentCtrl', function($rootScope,$scope,STUDENT_TABLE,$
 		.catch((err)=>{
 			console.error('err occured while insertion',err);
 		});
+		$scope.getStudent(STUDENT_TABLE);
 	}
 
 	$scope.getStudent(STUDENT_TABLE);
