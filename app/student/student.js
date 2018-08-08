@@ -30,10 +30,10 @@ reciept.controller('studentCtrl',  function($rootScope,$timeout,$scope,GENDER,ST
 		.catch((err)=>{
 			console.error('err, student insertion', err);
 		});
-		$scope.showSimpleToast();
+		$scope.showToast();
 	};
 
-	$scope.showSimpleToast = function() {
+	$scope.showToast = function() {
     var pinTo = $scope.getToastPosition();
 
     $mdToast.show(
