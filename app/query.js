@@ -96,6 +96,17 @@ class Query {
     });
     return p;
   }
+
+  selectNameById(tableName, key, value){
+    let p = new Promise( (resolve, reject)=>{
+      let sql = `SELECT name FROM ${tableName} WHERE ${key} = ${value}`
+      this.db.all(sql, (err, data)=>{
+        if(err) reject(err);
+        resolve(data);
+      });
+    });
+    return p;
+  }
   
 };
 
