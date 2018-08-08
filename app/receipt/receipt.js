@@ -1,8 +1,15 @@
-reciept.controller('receiptCtrl',  function($rootScope,$scope,$timeout,TYPES,RECEIPT_TABLE,CLASS,STUDENT_TABLE){
+reciept.controller('receiptCtrl',  function($rootScope,$scope,$timeout,TYPES,RECEIPT_TABLE,CLASS,STUDENT_TABLE,$mdToast){
 	$scope.types = TYPES;
 	$scope.class = CLASS;
 	$scope.receipt = {studentName: '', date : '', class: '', admissionFee: '',tutionFee:'',examFee:'',otherFee:'',deleted: 0};
   $scope.student={};
+  var last = {
+      bottom: false,
+      top: true,
+      left: false,
+      right: false
+    };
+    $scope.toastPosition = angular.extend({},last);
   $scope.resetReceipt = ()=>{
     $scope.receipt ={};
     $scope.receiptForm.$setPristine();
@@ -21,6 +28,7 @@ reciept.controller('receiptCtrl',  function($rootScope,$scope,$timeout,TYPES,REC
     .catch((err)=>{
      console.error('err, receipt insertion', err);
    });
+    $scope.showToast();
   };
 
   $scope.searchStudent = (keyword)=>{
@@ -57,6 +65,36 @@ reciept.controller('receiptCtrl',  function($rootScope,$scope,$timeout,TYPES,REC
   });
  };
  $scope.getDataByTable(STUDENT_TABLE, STUDENT_TABLE);
+
+ $scope.showToast = function() {
+    var pinTo = $scope.getToastPosition();
+
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Receipt Added!')
+        .position(pinTo )
+        .hideDelay(2000)
+    );
+  };
+
+  $scope.getToastPosition = function() {
+    sanitizePosition();
+
+    return Object.keys($scope.toastPosition)
+      .filter(function(pos) { return $scope.toastPosition[pos]; })
+      .join(' ');
+  };
+
+  function sanitizePosition() {
+    var current = $scope.toastPosition;
+
+    if ( current.bottom && last.top ) current.top = false;
+    if ( current.top && last.bottom ) current.bottom = false;
+    if ( current.right && last.left ) current.left = false;
+    if ( current.left && last.right ) current.right = false;
+
+    last = angular.extend({},current);
+  }
 
 })
 //.constant('TYPES', ['Admission Fee' , 'Tution Fee', 'Exam Fee', 'Other Fee'])
