@@ -40,4 +40,5 @@ If you wish to use native modules, you must run `npm run postinstall` after firs
 
 * Primary inspiration: https://github.com/szwacz/electron-boilerplate
 * SQLite JS: https://github.com/bytheway/electron-sqlite3/
+* https://github.com/optimistanoop
 
