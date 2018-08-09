@@ -11,6 +11,10 @@
           <span class="sortorder" ng-show="propertyName === 'studentName'" ng-class="{reverse: reverse}"></span>
         </th>
         <th>
+          <button ng-click="sortBy('feeType')">Fee Type</button>
+          <span class="sortorder" ng-show="propertyName === 'feeType'" ng-class="{reverse: reverse}"></span>
+        </th>
+        <th>
           <button ng-click="sortBy('amount')">Amout</button>
           <span class="sortorder" ng-show="propertyName === 'amount'" ng-class="{reverse: reverse}"></span>
         </th>
@@ -18,26 +22,20 @@
           <button ng-click="sortBy('class')">Class</button>
           <span class="sortorder" ng-show="propertyName === 'class'" ng-class="{reverse: reverse}"></span>
         </th>
-        <th>
-          <button ng-click="sortBy('section')">Section</button>
-          <span class="sortorder" ng-show="propertyName === 'section'" ng-class="{reverse: reverse}"></span>
-        </th>
-        <th>
-          <button ng-click="sortBy('feeType')">Fee Type</button>
-          <span class="sortorder" ng-show="propertyName === 'feeType'" ng-class="{reverse: reverse}"></span>
-        </th>
+        
+        
         <th >Edit</th>
         <th >Delete</th>
       </tr>
       <tr ng-repeat="rc in receipt | filter:$ctrl.query | orderBy:propertyName:reverse">
         <td>{{ rc.date | date:"EEE,d/M/yy"  }}</td>
         <td>{{ rc.studentName }}</td>
+        <td>{{ rc.feeType }}</td>
         <td>{{ rc.amount }}</td>
         <td>{{ rc.class }}</td>
-        <td>{{ rc.section }}</td>
-        <td>{{ rc.feeType }}</td>
+        
         <td><a href="#!/receipt/edit/{{rc.id}}"><md-tooltip md-direction="bottom">{{rc.studentName}} - CL-{{rc.class}}</md-tooltip><i class="material-icons">edit</i></a></td>
-        <td><a href="#!/receipt/delete/{{rc.id}}"><md-tooltip md-direction="bottom">Delete ? {{rc.studentName}} </md-tooltip><i class="material-icons" style="color:red">delete</i></a></td>
+        <td ng-click="deleteReceipt($event,rc)"><md-tooltip md-direction="bottom">Delete ? {{rc.studentName}} </md-tooltip><i class="material-icons" style="color:red">delete</i></td>
       </tr>
     </table>
   </md-content>
