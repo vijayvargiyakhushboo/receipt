@@ -19,21 +19,8 @@
 				</div>
 
 			</md-input-container>
-
-			<md-input-container class="md-block" flex-xs>
-				<label>Amount</label>
-				<md-icon><i class="material-icons">money</i></md-icon>
-				<input name="amount" type="text" ng-model="receipt.amount" ng-min="100" ng-required="true">
-				<div ng-messages="receiptForm.amount.$error" role="alert" multiple>
-					<div ng-message="required" class="my-message">You must supply amount</div>
-					<div ng-message="min" class="my-message">Amount should be greater than or equal to 100.</div>
-				</div>
-			</md-input-container>
-
-			
-		</md-content>
-		<md-content layout-padding layout="row">
-			<md-input-container class="md-block" flex-xs>
+            
+            <md-input-container class="md-block" flex-xs>
 				<label>Class</label>
 				<md-icon><i class="material-icons">class</i></md-icon>
 				<md-select name="class" type="text" ng-model="receipt.class" ng-required="true">
@@ -46,8 +33,22 @@
 					<div ng-message="required" class="my-message">You must supply class name.</div>
 				</div>
 			</md-input-container>
+			<!-- <md-input-container class="md-block" flex-xs>
+				<label>Amount</label>
+				<md-icon><i class="material-icons">money</i></md-icon>
+				<input name="amount" type="text" ng-model="receipt.amount" ng-min="100" ng-required="true">
+				<div ng-messages="receiptForm.amount.$error" role="alert" multiple>
+					<div ng-message="required" class="my-message">You must supply amount</div>
+					<div ng-message="min" class="my-message">Amount should be greater than or equal to 100.</div>
+				</div>
+			</md-input-container> -->
+
 			
-			<md-input-container flex-xs>
+		</md-content>
+		<md-content layout-padding layout="row">
+			
+			
+			<!-- <md-input-container flex-xs>
 				<label>Section</label>
 				<md-icon><i class="material-icons">list_alt</i></md-icon>
 				<md-select name="section" ng-model="receipt.section" ng-required="true">
@@ -58,7 +59,7 @@
 				</md-select>
 				<div ng-messages="receiptForm.section.$error" role="alert" multiple>
 					<div ng-message="required" class="my-message">You must supply section.</div>
-				</div>
+				</div> -->
 
 			</md-input-container>
 
