@@ -13,7 +13,7 @@
     <md-input-container class="md-block" flex-xs>
       <label>Class</label>
       <md-icon><i class="material-icons">class</i></md-icon>
-      <md-select name="class" type="text" ng-model="receipt.class" ng-required="true">
+      <md-select name="class" type="text" ng-model="receipt.class" ng-required="true" ng-change="getStudentByClass(receipt.class)">
         <md-option><em>None</em></md-option>
         <md-option ng-repeat="cl in class" ng-value="cl">
           {{cl}}
@@ -78,7 +78,7 @@
 
      <md-input-container class="md-block" flex="33">
        <label>{{type}}</label>
-       <input name="{{type}}_amount"  ng-disabled="!thisFee" type="text" ng-minlength="3" ng-maxlength="6" ng-min="100" ng-max="200000" required> 
+       <input name="{{type}}_amount" id="{{type}}_amount" ng-disabled="!thisFee" type="text" ng-minlength="3" ng-maxlength="6" ng-min="100" ng-max="200000" required> 
        
      </md-input-container>
    </div>
