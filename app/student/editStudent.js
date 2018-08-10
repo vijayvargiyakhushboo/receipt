@@ -1,11 +1,20 @@
-reciept.controller('editStudentCtrl',  function($rootScope,$scope,$timeout,STUDENT_TABLE,$routeParams,GENDER,CLASS){
+reciept.controller('editStudentCtrl',  function($rootScope,$scope,$timeout,STUDENT_TABLE,$routeParams,GENDER,CLASS,$mdToast){
   $scope.studentId = $routeParams.id;
   $scope.student = {name:'',fatherName:'', motherName:'',dob:'',address:'',gender:'',phone:'',email:'',className:'',deleted:0};
   $scope.gender = GENDER;
   $scope.className = CLASS;
+  var last = {
+      bottom: false,
+      top: true,
+      left: false,
+      right: false
+    };
+ $scope.toastPosition = angular.extend({},last);
 
   $scope.resetStudent = ()=> {
     $scope.student= {};
+    $scope.studentForm.$setPristine();
+    $scope.studentForm.$setUntouched();
   }
 
   $scope.getStudent = (id)=> {
@@ -30,7 +39,37 @@ reciept.controller('editStudentCtrl',  function($rootScope,$scope,$timeout,STUDE
       .catch((err)=>{
         console.error('err, student updation', err);
       });
+      $scope.showToast();
     };
+    $scope.showToast = function() {
+    var pinTo = $scope.getToastPosition();
+
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Student Updated!')
+        .position(pinTo )
+        .hideDelay(2000)
+    );
+  };
+
+  $scope.getToastPosition = function() {
+    sanitizePosition();
+
+    return Object.keys($scope.toastPosition)
+      .filter(function(pos) { return $scope.toastPosition[pos]; })
+      .join(' ');
+  };
+
+  function sanitizePosition() {
+    var current = $scope.toastPosition;
+
+    if ( current.bottom && last.top ) current.top = false;
+    if ( current.top && last.bottom ) current.bottom = false;
+    if ( current.right && last.left ) current.left = false;
+    if ( current.left && last.right ) current.right = false;
+
+    last = angular.extend({},current);
+  }
 
     $scope.getStudent($scope.studentId);
   }).constant('GENDER', ['Female','Male'])

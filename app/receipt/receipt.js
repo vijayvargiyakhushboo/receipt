@@ -17,6 +17,10 @@ reciept.controller('receiptCtrl',  function($rootScope,$scope,$timeout,TYPES,REC
   };
 
   $scope.submitReceipt =(receipt)=> {
+    $scope.receipt.admissionFee = document.getElementById('admissionFee_amount').value;
+    $scope.receipt.tutionFee = document.getElementById('tutionFee_amount').value;
+    $scope.receipt.examFee = document.getElementById('examFee_amount').value;
+    $scope.receipt.otherFee = document.getElementById('otherFee_amount').value;
     let keys = Object.keys($scope.receipt);
     let values = Object.values($scope.receipt);
     q.insert(RECEIPT_TABLE, keys, values)
@@ -94,6 +98,11 @@ reciept.controller('receiptCtrl',  function($rootScope,$scope,$timeout,TYPES,REC
     if ( current.left && last.right ) current.right = false;
 
     last = angular.extend({},current);
+  }
+
+  $scope.getStudentByClass = function(cl) {
+    console.log("getStudentByClass: "+cl);
+
   }
 
 })
