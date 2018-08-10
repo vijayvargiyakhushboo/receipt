@@ -11,10 +11,6 @@
           <span class="sortorder" ng-show="propertyName === 'studentName'" ng-class="{reverse: reverse}"></span>
         </th>
         <th>
-          <button ng-click="sortBy('feeType')">Fee Type</button>
-          <span class="sortorder" ng-show="propertyName === 'feeType'" ng-class="{reverse: reverse}"></span>
-        </th>
-        <th>
           <button ng-click="sortBy('amount')">Amout</button>
           <span class="sortorder" ng-show="propertyName === 'amount'" ng-class="{reverse: reverse}"></span>
         </th>
@@ -30,8 +26,8 @@
       <tr ng-repeat="rc in receipt | filter:$ctrl.query | orderBy:propertyName:reverse">
         <td>{{ rc.date | date:"EEE,d/M/yy"  }}</td>
         <td>{{ rc.studentName }}</td>
-        <td>{{ rc.feeType }}</td>
-        <td>{{ rc.amount }}</td>
+       
+        <td><span>admission Fee:<b>{{ rc.admissionFee }}</b> | tution Fee:<b>{{ rc.tutionFee }}</b> | exam Fee:<b>{{ rc.examFee }}</b> | other Fee:<b>{{ rc.otherFee }}</b></span></td>
         <td>{{ rc.class }}</td>
         
         <td><a href="#!/receipt/edit/{{rc.id}}"><md-tooltip md-direction="bottom">{{rc.studentName}} - CL-{{rc.class}}</md-tooltip><i class="material-icons">edit</i></a></td>
