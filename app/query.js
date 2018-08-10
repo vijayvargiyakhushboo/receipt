@@ -99,8 +99,31 @@ class Query {
 
   selectNameById(tableName, key, value){
     let p = new Promise( (resolve, reject)=>{
-      let sql = `SELECT name FROM ${tableName} WHERE ${key} = ${value}`
+      let sql = `SELECT * FROM ${tableName} WHERE ${key} = ${value}`
       this.db.all(sql, (err, data)=>{
+        if(err) reject(err);
+        resolve(data);
+      });
+    });
+    return p;
+  }
+
+  selectAllFrmTablsById(tableName1,tableName2, key, value){
+    let p = new Promise( (resolve, reject)=>{
+      let sql = `SELECT ${tableName1}.*,${tableName2}.name FROM ${tableName1},${tableName2} 
+      WHERE ${tableName1}.${key} = ${value} AND ${tableName1}.studentName =${tableName2}.id`
+      this.db.all(sql, (err, data)=>{
+        if(err) reject(err);
+        resolve(data);
+      });
+    });
+    return p;
+  }
+
+  selectAllByTable(tableName1,tableName2){
+    let p = new Promise( (resolve, reject)=>{
+      this.db.all(`select ${tableName1}.*,${tableName2}.name from ${tableName1},${tableName2} 
+        where ${tableName1}.deleted=0 and ${tableName1}.studentName = ${tableName2}.id`, (err, data)=>{
         if(err) reject(err);
         resolve(data);
       });

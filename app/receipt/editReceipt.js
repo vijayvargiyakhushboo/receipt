@@ -1,15 +1,27 @@
-reciept.controller('editReceiptCtrl', function($rootScope,$scope,$routeParams,RECEIPT_TABLE,$timeout,CLASS,TYPES,SECTION){
+reciept.controller('editReceiptCtrl', function($rootScope,$scope,$routeParams,RECEIPT_TABLE,$timeout,CLASS,TYPES,SECTION,STUDENT_TABLE){
 	$scope.receiptId = $routeParams.id;
 	$scope.class = CLASS;
 	$scope.types = TYPES;
 	$scope.section = SECTION;
 	$scope.receipt = {studentName: '', date : '', class: '', section: '', feeType: '', amount: '',deleted: 0};
 
-	$scope.getReceipt = (id)=> {
+	/*$scope.getReceipt = (id)=> {
 		q.selectAllById(RECEIPT_TABLE,'id',$scope.receiptId)
 		.then((rows)=>
 			$timeout(()=>{
 				$scope.receipt = rows[0];
+				$scope.receipt.date = $scope.receipt.date ? new Date($scope.receipt.date) : undefined;
+			},0)
+			)};*/
+
+		$scope.getReceipt = (id)=> {
+		q.selectAllFrmTablsById(RECEIPT_TABLE,STUDENT_TABLE,'id',$scope.receiptId)
+		.then((rows)=>
+			$timeout(()=>{
+				console.log("getReceipt frm:",rows);
+
+				$scope.receipt = rows[0];
+				$scope.receipt.studentName = rows[0].name;
 				$scope.receipt.date = $scope.receipt.date ? new Date($scope.receipt.date) : undefined;
 			},0)
 			)};
