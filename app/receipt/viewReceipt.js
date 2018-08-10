@@ -32,10 +32,8 @@ reciept.controller('viewReceiptCtrl', function($rootScope ,$scope,RECEIPT_TABLE,
 
   $scope.confirmReceipt = (receipt)=>{
     $scope.receipt = receipt;
-    console.log("confirmReceipt :"+$scope.receipt.id);
     let keys = ['deleted'];
     let values = [1];
-    console.log("confirmReceipt");
     q.update(RECEIPT_TABLE, keys, values, 'id', $scope.receipt.id)
     .then((data)=>{
       $timeout (()=>{
@@ -44,6 +42,7 @@ reciept.controller('viewReceiptCtrl', function($rootScope ,$scope,RECEIPT_TABLE,
     .catch((err)=>{
       console.error('err occured while insertion',err);
     });
+    $scope.getReceipt(RECEIPT_TABLE,STUDENT_TABLE);
   }
 
   $scope.getReceipt(RECEIPT_TABLE,STUDENT_TABLE);
