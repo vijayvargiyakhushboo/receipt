@@ -3,7 +3,7 @@ const {dialog} = require('electron').remote
 
 let reciept = angular.module('reciept', ['ngRoute', 'ngMaterial', 'ngMessages']);
 
-reciept.controller('recieptCtrl', function($rootScope,$scope,$mdDialog,$location, $timeout, TAB) {
+reciept.controller('recieptCtrl', function($rootScope,$scope,$mdDialog,$location, $timeout, TAB,$window) {
    $scope.tabs = TAB;
   
   $rootScope.template = $scope.tabs[0];
@@ -14,12 +14,15 @@ reciept.controller('recieptCtrl', function($rootScope,$scope,$mdDialog,$location
       $location.path($rootScope.template.route);
     }, 0);
    };
+   $scope.back = ()=>{
+    $window.history.back();
+}
 })
  .constant('TAB',[
     {title:'Add Student', route:'/'},
-    {title:'View Student', route:'/student'},
+    {title:'Student', route:'/student'},
     {title:'Add Receipt', route:'/receipt/add'},
-    {title:'View Receipt', route:'/receipt'}
+    {title:'Receipt', route:'/receipt'}
   ])
 .constant('RECEIPT_TABLE', 'receipt')
 .constant('STUDENT_TABLE', 'student');
@@ -46,6 +49,9 @@ reciept.config(function($routeProvider, $locationProvider,$mdThemingProvider) {
     })
     .when("/receipt/edit/:id", {
         templateUrl : 'file://' + __dirname + '/receipt/editReceipt.html'
+    })
+     .when("/student/detail/:id", {
+        templateUrl : 'file://' + __dirname + '/student/detailStudent.html'
     });
     
     $locationProvider.hashPrefix('!');

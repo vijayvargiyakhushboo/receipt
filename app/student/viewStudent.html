@@ -30,7 +30,7 @@
         <th >Delete</th>
       </tr>
       <tr ng-repeat="student in students | filter:$ctrl.query | orderBy:propertyName:reverse">
-        <td>{{ student.name }}</td>
+        <td><a href="#!/student/detail/{{student.id}}">{{ student.name }}</a></td>
         <td>{{ student.fatherName }}</td>
         <td>{{ student.motherName }}</td>
         <td>{{ student.gender }}</td>
