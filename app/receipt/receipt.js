@@ -1,7 +1,11 @@
-reciept.controller('receiptCtrl',  function($rootScope,$scope,$timeout,TYPES,RECEIPT_TABLE,CLASS,STUDENT_TABLE,$mdToast){
+reciept.controller('receiptCtrl',  function($rootScope,$scope,$timeout,TYPES,RECEIPT_TABLE,CLASS,STUDENT_TABLE,$mdToast,$mdDateLocale){
 	$scope.types = TYPES;
 	$scope.class = CLASS;
 	$scope.receipt = {studentName: '', date : '', class: '', admissionFee: '',tutionFee:'',examFee:'',otherFee:'',deleted: 0};
+  $scope.minDate = new Date();
+  $scope.maxDate = new Date();
+
+  
   $scope.student={};
   var last = {
       bottom: false,
