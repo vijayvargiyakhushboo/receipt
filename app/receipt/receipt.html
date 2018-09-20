@@ -4,7 +4,7 @@
 
     <md-input-container class="md-block" flex-xs>
       <label>Date</label>
-      <md-datepicker name="date" placeholder="Enter Date" ng-model="receiptCtrl.date" md-min-date="minDate"  md-max-date="maxDate" ng-required="true"></md-datepicker>
+      <md-datepicker name="date" placeholder="Enter Date" ng-model="receipt.date" md-min-date="minDate"  md-max-date="maxDate" ng-required="true"></md-datepicker>
      
       <div ng-messages="receiptForm.date.$error" role="alert" multiple>
         <div ng-message="required" class="my-message">You must supply a date.</div>

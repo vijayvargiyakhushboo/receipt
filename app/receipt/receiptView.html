@@ -3,20 +3,21 @@
     <table style="width:80%;margin: 0px auto;" >
       <tr>
         <th>
-          <button ng-click="sortBy('date')">Date</button>
-          <span class="sortorder" ng-show="propertyName === 'date'" ng-class="{reverse: reverse}"></span>
+          <md-button md-no-ink class="md-primary" ng-click="sortBy('date')">Date</md-button>
+          <!-- <span class="sortorder" ng-show="propertyName === 'date'" ng-class="{reverse: reverse}"></span> -->
+          <span flex></span><md-icon ng-class="{reverse: reverse}"><i class="material-icons">unfold_more</i></md-icon>
         </th>
         <th>
-          <button ng-click="sortBy('studentName')">Student Name</button>
-          <span class="sortorder" ng-show="propertyName === 'studentName'" ng-class="{reverse: reverse}"></span>
+          <md-button md-no-link class="md-primary" ng-click="sortBy('studentName')">Student Name</md-button>
+          <span flex></span><md-icon ng-class="{reverse: reverse}"><i class="material-icons">unfold_more</i></md-icon>
         </th>
         <th>
-          <button ng-click="sortBy('amount')">Amout</button>
-          <span class="sortorder" ng-show="propertyName === 'amount'" ng-class="{reverse: reverse}"></span>
+           <md-button md-no-link class="md-primary" ng-click="sortBy('amount')">Amout</md-button>
+           <span flex></span><md-icon ng-class="{reverse: reverse}"><i class="material-icons">unfold_more</i></md-icon>
         </th>
         <th>
-          <button ng-click="sortBy('class')">Class</button>
-          <span class="sortorder" ng-show="propertyName === 'class'" ng-class="{reverse: reverse}"></span>
+          <md-button md-no-link class="md-primary" ng-click="sortBy('class')">Class</md-button>
+          <span flex></span><md-icon ng-class="{reverse: reverse}"><i class="material-icons">unfold_more</i></md-icon>
         </th>
         
         
@@ -27,7 +28,7 @@
         <td>{{ rc.date | date:"EEE,d/M/yy"  }}</td>
         <td>{{ rc.studentName }}</td>
        
-        <td><span>admission Fee:<b>{{ rc.admissionFee }}</b> | tution Fee:<b>{{ rc.tutionFee }}</b> | exam Fee:<b>{{ rc.examFee }}</b> | other Fee:<b>{{ rc.otherFee }}</b></span></td>
+        <td><span>Admission Fee:<b>{{ rc.admissionFee }}</b> | Tution Fee:<b>{{ rc.tutionFee }}</b> | Exam Fee:<b>{{ rc.examFee }}</b> | Other Fee:<b>{{ rc.otherFee }}</b></span></td>
         <td>{{ rc.class }}</td>
         
         <td><a href="#!/receipt/edit/{{rc.id}}"><md-tooltip md-direction="bottom">{{rc.studentName}} - CL-{{rc.class}}</md-tooltip><i class="material-icons">edit</i></a></td>
