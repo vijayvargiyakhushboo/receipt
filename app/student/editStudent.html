@@ -1,37 +1,39 @@
-<div ng-controller="editStudentCtrl" ng-cloak class="md-inline-form">
-  <div layout="row">
-    <div flex="70">
-      <md-content layout-padding>
-        <form novalidate name="studentForm">
-          <div layout-gt-xs="row">
-            <md-input-container flex-xs>
-              <label>Student Name</label>
-              <md-icon><i class="material-icons">person</i></md-icon>
-              <input type="text" name="name" ng-model="student.name"  ng-minlength="4" ng-required="true">
-              <div ng-messages="studentForm.name.$error" role="alert" multiple>
-                <div ng-message="required" class="my-message">You must supply a name.</div>
-                <div ng-message="minlength" class="my-message">Name should be of minimum 4 alphabets.</div>
-              </div>
-            </md-input-container flex-xs>
-            <md-input-container class="md-block" flex-xs>
-              <label>Father's Name</label>
-              <md-icon><i class="material-icons">people</i></md-icon>
-              <input name="fatherName" type="text" ng-model="student.fatherName" ng-minlength="4" ng-required="true">
-              <div ng-messages="studentForm.fatherName.$error" role="alert" multiple>
-                <div ng-message="required" class="my-message">You must supply a name.</div>
-                <div ng-message="minlength" class="my-message">Father name should be of minimum 4 alphabets.</div>
-              </div>
-            </md-input-container>
-            <md-input-container flex-xs>
-              <label>Mother's Name</label>
-              <md-icon><i class="material-icons">people</i></md-icon>
-              <input name="motherName" type="text" ng-model="student.motherName" ng-minlength="4" ng-required="true">
-              <div ng-messages="studentForm.motherName.$error" role="alert" multiple>
-                <div ng-message="required" class="my-message">You must supply a name.</div>
-                <div ng-message="minlength" class="my-message">Mother name should be of minimum 4 alphabets.</div>
-              </div>
-            </md-input-container>
-            <md-content layout-padding layout="row">
+<div ng-controller="editStudentCtrl">
+
+  <form name="studentForm">
+   <md-content layout-padding layout="row">
+     <md-input-container class="md-block" flex-xs>
+      <label>Student Name</label>
+      <md-icon><i class="material-icons">person</i></md-icon>
+      <input type="text" name="name" ng-model="student.name"  ng-minlength="4" ng-required="true">
+      <div ng-messages="studentForm.name.$error" role="alert" multiple>
+        <div ng-message="required" class="my-message">You must supply a name.</div>
+        <div ng-message="minlength" class="my-message">Name should be of minimum 4 alphabets.</div>
+      </div>
+    </md-input-container flex-xs>
+
+    <md-input-container class="md-block" flex-xs>
+      <label>Father's Name</label>
+      <md-icon><i class="material-icons">people</i></md-icon>
+      <input name="fatherName" type="text" ng-model="student.fatherName" ng-minlength="4" ng-required="true">
+      <div ng-messages="studentForm.fatherName.$error" role="alert" multiple>
+        <div ng-message="required" class="my-message">You must supply a name.</div>
+        <div ng-message="minlength" class="my-message">Father name should be of minimum 4 alphabets.</div>
+      </div>
+    </md-input-container>
+
+    <md-input-container flex-xs>
+      <label>Mother's Name</label>
+      <md-icon><i class="material-icons">people</i></md-icon>
+      <input name="motherName" type="text" ng-model="student.motherName" ng-minlength="4" ng-required="true">
+      <div ng-messages="studentForm.motherName.$error" role="alert" multiple>
+        <div ng-message="required" class="my-message">You must supply a name.</div>
+        <div ng-message="minlength" class="my-message">Mother name should be of minimum 4 alphabets.</div>
+      </div>
+    </md-input-container>
+  </md-content>
+
+  <md-content layout-padding layout="row">
    <md-input-container class="md-block" flex-xs>
     <label>Date</label>
     <md-datepicker name="dob" ng-model="student.dob" md-open-on-focus required ng-required="true"></md-datepicker>
@@ -102,5 +104,4 @@
 </md-content>
 <md-button class="md-raised md-primary" ng-disabled="studentForm.$invalid"  ng-click="submitStudent(student)">Submit</md-button>
 <md-button class="md-raised md-warn" ng-click="resetStudent()">Reset</md-button>
-  </div>
-</div>
+

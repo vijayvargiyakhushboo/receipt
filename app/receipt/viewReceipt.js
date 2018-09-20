@@ -1,16 +1,17 @@
-reciept.controller('viewReceiptCtrl', function($rootScope ,$scope,RECEIPT_TABLE,$timeout){
-
+reciept.controller('viewReceiptCtrl', function($rootScope ,$scope,RECEIPT_TABLE,$timeout,STUDENT_TABLE,$routeParams){
+  const {shell} = require('electron');
   $scope.sortBy = function(propertyName) {
     $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
     $scope.propertyName = propertyName;
   };
 
-  $scope.getReceipt = (tableName)=>{
-    q.selectAll(tableName)
+  $scope.getReceipt = (tableName1,tableName2)=>{
+    q.selectAllByTable(tableName1,tableName2)
     .then((rows)=>{
       if(rows)
         for(let row of rows){
-          row.dob = row.dob ? new Date(row.dob) : null;
+          row.date = row.date ? new Date(row.date) : null;
+          row.studentName = row.name;
         }
         $timeout(()=>{
           $scope.hideNoDataFound = true;
@@ -20,9 +21,30 @@ reciept.controller('viewReceiptCtrl', function($rootScope ,$scope,RECEIPT_TABLE,
         },0);
       })
     .catch((error)=>{
-      console.log('get receipt:',error); 
+      console.log('get receipt error:',error); 
     });
-
   }  
-  $scope.getReceipt(RECEIPT_TABLE);
+
+  $scope.deleteReceipt = (eve,receipt)=>{
+      shell.beep()
+    $scope.confirmReceipt(receipt);
+  }
+
+  $scope.confirmReceipt = (receipt)=>{
+    $scope.receipt = receipt;
+    console.log("confirmReceipt :"+$scope.receipt.id);
+    let keys = ['deleted'];
+    let values = [1];
+    console.log("confirmReceipt");
+    q.update(RECEIPT_TABLE, keys, values, 'id', $scope.receipt.id)
+    .then((data)=>{
+      $timeout (()=>{
+      },0)
+    })
+    .catch((err)=>{
+      console.error('err occured while insertion',err);
+    });
+  }
+
+  $scope.getReceipt(RECEIPT_TABLE,STUDENT_TABLE);
 });

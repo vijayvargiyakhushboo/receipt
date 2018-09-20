@@ -11,30 +11,32 @@ class Query {
   
   createStudentTable(){
     this.db.run(`CREATE TABLE IF NOT EXISTS student(
-       id INTEGER PRIMARY KEY AUTOINCREMENT,
-       name           TEXT    NOT NULL,
-       fatherName           TEXT    NOT NULL,
-       motherName           TEXT    NOT NULL,
-       address        CHAR(50) NOT NULL,
-       gender         TEXT NOT NULL,
-       phone         INT NOT NULL,
-       email         TEXT NOT NULL,
-       className         INT NOT NULL,
-       dob           TEXT NOT NULL
-       )`
+     id INTEGER PRIMARY KEY AUTOINCREMENT,
+     name           TEXT    NOT NULL,
+     fatherName           TEXT    NOT NULL,
+     motherName           TEXT    NOT NULL,
+     address        CHAR(50) NOT NULL,
+     gender         TEXT NOT NULL,
+     phone         INT NOT NULL,
+     email         TEXT NOT NULL,
+     className         INT NOT NULL,
+     dob           TEXT NOT NULL,
+     deleted       INT DEFAULT (0)
+     )`
      );
   }
   createRecieptTable(){
     this.db.run(`CREATE TABLE IF NOT EXISTS receipt (
-       id INTEGER PRIMARY KEY AUTOINCREMENT,
-       studentName    TEXT   NOT NULL,
-       section        TEXT   NOT NULL,
-       amount         INT    NOT NULL,
-       date           TEXT   NOT NULL, 
-      
-       class        TEXT    NOT NULL,
-       feeType      TEXT    NOT NULL
-       )`
+     id INTEGER PRIMARY KEY AUTOINCREMENT,
+     studentName    TEXT   NOT NULL,
+     date           TEXT   NOT NULL, 
+     class        TEXT    NOT NULL,
+     admissionFee INT    NOT NULL,
+     tutionFee    INT    NOT NULL,
+     examFee      INT    NOT NULL,
+     otherFee     INT    NOT NULL,
+     deleted      INT DEFAULT (0)
+     )`
      );
   }
 
@@ -53,7 +55,7 @@ class Query {
 
   selectAll(tableName){
     let p = new Promise( (resolve, reject)=>{
-      this.db.all(`select * from ${tableName}`, (err, data)=>{
+      this.db.all(`select * from ${tableName} where deleted=0`, (err, data)=>{
         if(err) reject(err);
         resolve(data);
       });
@@ -88,6 +90,40 @@ class Query {
     let p = new Promise( (resolve, reject)=>{
       let sql = `SELECT * FROM ${tableName} WHERE ${key} = ${value}`
       this.db.all(sql, (err, data)=>{
+        if(err) reject(err);
+        resolve(data);
+      });
+    });
+    return p;
+  }
+
+  selectNameById(tableName, key, value){
+    let p = new Promise( (resolve, reject)=>{
+      let sql = `SELECT * FROM ${tableName} WHERE ${key} = ${value}`
+      this.db.all(sql, (err, data)=>{
+        if(err) reject(err);
+        resolve(data);
+      });
+    });
+    return p;
+  }
+
+  selectAllFrmTablsById(tableName1,tableName2, key, value){
+    let p = new Promise( (resolve, reject)=>{
+      let sql = `SELECT ${tableName1}.*,${tableName2}.name FROM ${tableName1},${tableName2} 
+      WHERE ${tableName1}.${key} = ${value} AND ${tableName1}.studentName =${tableName2}.id`
+      this.db.all(sql, (err, data)=>{
+        if(err) reject(err);
+        resolve(data);
+      });
+    });
+    return p;
+  }
+
+  selectAllByTable(tableName1,tableName2){
+    let p = new Promise( (resolve, reject)=>{
+      this.db.all(`select ${tableName1}.*,${tableName2}.name from ${tableName1},${tableName2} 
+        where ${tableName1}.deleted=0 and ${tableName1}.studentName = ${tableName2}.id`, (err, data)=>{
         if(err) reject(err);
         resolve(data);
       });
