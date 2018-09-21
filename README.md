@@ -42,3 +42,10 @@ If you wish to use native modules, you must run `npm run postinstall` after firs
 * SQLite JS: https://github.com/bytheway/electron-sqlite3/
 * https://github.com/optimistanoop
 
+## Related Screens
+
+![Alt text](/app/image/detailStudent.png?raw=true "Optional Title")
+
+![Alt text](/app/image/viewListStudent.png?raw=true "Optional Title")
+
+
