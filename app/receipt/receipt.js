@@ -3,8 +3,6 @@ reciept.controller('receiptCtrl',  function($rootScope,$scope,$timeout,TYPES,REC
 	$scope.class = CLASS;
 	$scope.receipt = {studentName: '', date : '', class: '', admissionFee: '',tutionFee:'',examFee:'',otherFee:'',deleted: 0};
   $scope.minDate = new Date();
-  $scope.maxDate = new Date();
-
   
   $scope.student={};
   var last = {
@@ -25,6 +23,7 @@ reciept.controller('receiptCtrl',  function($rootScope,$scope,$timeout,TYPES,REC
     $scope.receipt.tutionFee = document.getElementById('tutionFee_amount').value;
     $scope.receipt.examFee = document.getElementById('examFee_amount').value;
     $scope.receipt.otherFee = document.getElementById('otherFee_amount').value;
+    $scope.receipt.date = new Date();
     let keys = Object.keys($scope.receipt);
     let values = Object.values($scope.receipt);
     q.insert(RECEIPT_TABLE, keys, values)

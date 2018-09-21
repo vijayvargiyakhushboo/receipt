@@ -34,15 +34,8 @@
   </md-content>
 
   <md-content layout-padding layout="row">
-   <md-input-container class="md-block" flex-xs>
-    <label>Date</label>
-    <md-datepicker name="dob" ng-model="student.dob" md-open-on-focus required ng-required="true"></md-datepicker>
-    <div ng-messages="studentForm.dob.$error" ng-if="studentForm.dob.$touched">
-      <div ng-message="required">You must enter a dob.</div>
-    </div>
-  </md-input-container>
-  
-  <md-input-container flex-xs>
+
+    <md-input-container flex-xs>
     <label>Gender</label>
     <md-icon><i class="material-icons">book</i></md-icon>
     <md-select name="gender" ng-model="student.gender" ng-required="true">
@@ -55,7 +48,15 @@
       <div ng-message="required">You must supply a gender .</div>
     </div>
   </md-input-container>
-
+  
+   <md-input-container class="md-block" flex-xs>
+    <label>Date</label>
+    <md-datepicker name="dob" ng-model="student.dob" md-open-on-focus required ng-required="true"></md-datepicker>
+    <div ng-messages="studentForm.dob.$error" ng-if="studentForm.dob.$touched">
+      <div ng-message="required">You must enter a dob.</div>
+    </div>
+  </md-input-container>
+  
   <md-input-container flex-xs>
     <label>Address</label>
     <md-icon><i class="material-icons">place</i></md-icon>
