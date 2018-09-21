@@ -4,7 +4,9 @@
 
     <md-input-container class="md-block" flex-xs>
       <label>Date</label>
-      <md-datepicker name="date" placeholder="Enter Date" ng-model="receipt.date" md-min-date="minDate"  md-max-date="maxDate" ng-required="true"></md-datepicker>
+      <!-- <md-datepicker name="date" placeholder="Enter Date" ng-model="receipt.date" md-min-date="minDate"  md-max-date="maxDate" ng-required="true">{{ minDate }}</md-datepicker> -->
+      <md-icon><i class="material-icons">date_range</i></md-icon>
+      <input name="date" type="text"  value="{{ minDate | date:'dd-MM-yyyy'}}" readonly="readonly">
      
       <div ng-messages="receiptForm.date.$error" role="alert" multiple>
         <div ng-message="required" class="my-message">You must supply a date.</div>
@@ -23,7 +25,7 @@
       <div ng-messages="receiptForm.class.$error" role="alert" multiple>
         <div ng-message="required" class="my-message">You must supply class name.</div>
       </div>
-    </md-input-container>
+    </md-input-container>&nbsp;&nbsp;
 
     <md-input-container class="md-block" flex-xs>
       <label>Student Name</label>
@@ -79,6 +81,7 @@
 
      <md-input-container class="md-block" flex="33">
        <label>{{type}}</label>
+       <md-icon><i class="material-icons">money</i></md-icon>
        <input name="{{type}}_amount" id="{{type}}_amount" ng-disabled="!thisFee" type="text" ng-minlength="3" ng-maxlength="6" ng-min="100" ng-max="200000" required> 
        
      </md-input-container>
