@@ -122,8 +122,19 @@ class Query {
 
   selectAllByTable(tableName1,tableName2){
     let p = new Promise( (resolve, reject)=>{
-      this.db.all(`select ${tableName1}.*,${tableName2}.name from ${tableName1},${tableName2} 
+      this.db.all(`select ${tableName1}.*,${tableName2}.* from ${tableName1},${tableName2} 
         where ${tableName1}.deleted=0 and ${tableName1}.studentName = ${tableName2}.id`, (err, data)=>{
+        if(err) reject(err);
+        resolve(data);
+      });
+    });
+    return p;
+  }
+
+  selectAllStudentWithReceipt(tableName1,tableName2, key, value){
+    let p = new Promise( (resolve, reject)=>{
+      let sql = `SELECT ${tableName1}.*,${tableName2}.* FROM ${tableName1},${tableName2} WHERE ${tableName1}.${key} = ${value} and ${tableName1}.deleted=0 and ${tableName2}.deleted=0 and ${tableName1}.id = ${tableName2}.studentName`;
+      this.db.all(sql, (err, data)=>{
         if(err) reject(err);
         resolve(data);
       });
