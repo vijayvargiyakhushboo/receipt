@@ -1,10 +1,10 @@
-reciept.controller('detailStudentCtrl',function($rootScope,$timeout,$scope,$routeParams,STUDENT_TABLE){
+reciept.controller('detailStudentCtrl',function($rootScope,$timeout,$scope,$routeParams,STUDENT_TABLE,RECEIPT_TABLE){
 console.log("dctrl");
 $scope.studentId = $routeParams.id;
 console.log($scope.studentId );
 
 $scope.getStudent = (id)=> {
-    q.selectAllById(STUDENT_TABLE,'id',$scope.studentId)
+    q.selectAllStudentWithReceipt(STUDENT_TABLE,RECEIPT_TABLE,'id',$scope.studentId)
     .then((rows)=>
       $timeout(()=>{
         $scope.student = rows[0];

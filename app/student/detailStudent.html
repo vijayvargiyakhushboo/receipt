@@ -5,11 +5,13 @@
 
 </style>
 <div ng-controller="detailStudentCtrl">
-	<md-content>
+	<md-content class="md-padding" layout-xs="column" layout="row">
+    <div flex-xs flex-gt-xs="75" layout="column">
 		<md-card>
  <md-toolbar class="md-primary">
     <div class="md-toolbar-tools">
       <h4 style="text-align: center;" class="md-flex">{{ student.name }}'s detail</h4> 
+      <span flex></span> <span style="color: #FF7A00;">Class - </span>&nbsp;<span style="color: #FF7A00;">{{ student.className}}</span>
       <span flex></span><md-button class="md-raised md-primary"><a href="#!/">Add New Student</a></md-button>
     </div>
   </md-toolbar>
@@ -100,24 +102,45 @@
 </md-card>
 
 
-<!-- <div layout="row">
-  <div flex="100">
-   <md-toolbar class="md-primary">
-    <div class="md-toolbar-tools">
-      <h4 style="text-align: center;" class="md-flex">{{ student.name }}'s detail</h4> 
-    </div>
-  </md-toolbar>
-  </div>
 </div>
-
-<div layout="row">
-  <div flex="100">
-   <md-toolbar class="md-accent">
+ <div flex-xs flex-gt-xs="25" layout="column">
+      <md-card>
+ <md-toolbar class="md-primary">
     <div class="md-toolbar-tools">
-      <h4 style="text-align: center;" class="md-flex">{{ student.name }}'s detail</h4> 
+      <h4 style="text-align: center;" class="md-flex">Fee details</h4> 
+      
     </div>
   </md-toolbar>
+
+ <div flex layout="row">
+    <div flex layout="row" layout-align="center center"
+         class="demo-swipe">
+      <span class="no-select"></span>Admission Fee<span flex></span><span style="color: #FF7A00;">{{ student.admissionFee }}</span>
+    </div>
   </div>
-</div> -->
+    <md-divider></md-divider>
+
+ <div flex layout="row">
+    <div flex layout="row" layout-align="center center"
+         class="demo-swipe">
+      <span class="no-select"></span>Exam Fee<span flex></span><span style="color: #FF7A00;">{{ student.examFee }} </span>
+    </div>
+  </div>
+    <md-divider></md-divider>
+
+ <div flex layout="row">
+    <div flex layout="row" layout-align="center center"
+         class="demo-swipe">
+      <span class="no-select"></span>Tution Fee<span flex></span><span style="color: #FF7A00;">{{ student.tutionFee }}</span>
+    </div>
+  </div>
+    <md-divider></md-divider>
+    
+   </div>
+ </md-card>
+  </div>
+
+
+</md-content>
 <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
-  </md-content>
+ <!--  </md-content> -->
