@@ -133,7 +133,11 @@ class Query {
 
   selectAllStudentWithReceipt(tableName1,tableName2, key, value){
     let p = new Promise( (resolve, reject)=>{
-      let sql = `SELECT ${tableName1}.*,${tableName2}.* FROM ${tableName1},${tableName2} WHERE ${tableName1}.${key} = ${value} and ${tableName1}.deleted=0 and ${tableName2}.deleted=0 and ${tableName1}.id = ${tableName2}.studentName`;
+      //let sql = `SELECT ${tableName1}.*,${tableName2}.* FROM ${tableName1},${tableName2} WHERE ${tableName1}.${key} = ${value} and ${tableName1}.deleted=0 and ${tableName2}.deleted=0 and ${tableName1}.id = ${tableName2}.studentName`;
+      let sql = `SELECT  ${tableName1}.*,${tableName2}.examFee,${tableName2}.admissionFee,${tableName2}.tutionFee,${tableName2}.otherFee
+      FROM  ${tableName1} LEFT JOIN ${tableName2}
+      ON ${tableName1}.id = ${tableName2}.studentName
+      WHERE ${tableName1}.${key} = ${value} `;
       this.db.all(sql, (err, data)=>{
         if(err) reject(err);
         resolve(data);
