@@ -23,9 +23,11 @@ reciept.controller('receiptCtrl',  function($rootScope,$scope,$timeout,TYPES,REC
     $scope.receipt.tutionFee = document.getElementById('tutionFee_amount').value;
     $scope.receipt.examFee = document.getElementById('examFee_amount').value;
     $scope.receipt.otherFee = document.getElementById('otherFee_amount').value;
+    $scope.receipt.studentName = $scope.student.id;
     $scope.receipt.date = new Date();
     let keys = Object.keys($scope.receipt);
     let values = Object.values($scope.receipt);
+    console.log("receipt data:",$scope.receipt);
     q.insert(RECEIPT_TABLE, keys, values)
     .then((data)=>{
      $timeout(()=>{
@@ -44,6 +46,7 @@ reciept.controller('receiptCtrl',  function($rootScope,$scope,$timeout,TYPES,REC
     for(let st of $scope.student){
       st.name.toLowerCase().indexOf(keyword.toLowerCase()) > -1 ? result.push(st) : student.push(st);
     }
+    console.log("searchStudent :"+result[0].id);
     $scope.receipt.studentName = result[0].id;
     return result.length > 0 ? result :student;
   };
@@ -55,6 +58,7 @@ reciept.controller('receiptCtrl',  function($rootScope,$scope,$timeout,TYPES,REC
       $scope.student = null;
       $scope.receipt = [];
     }
+    console.log("updateSelectedStud: ",$scope.student);
   };
 
   $scope.getDataByTable = (tableName, modelName)=>{
