@@ -26,62 +26,44 @@ reciept.controller('editStudentCtrl',  function($rootScope,$scope,$timeout,STUDE
       },0)
       )};
 
-    $scope.submitStudent =(student)=> {
+      $scope.submitStudent =(student)=> {
       let keys = Object.keys($scope.student);
       let values = Object.values($scope.student);
       $scope.getStudent($scope.studentId);
       $scope.$watch('student', function(newVal, oldVal){
-        console.log("newValue : ",newVal);
-        console.log("oldVal : ",oldVal);
- if(newVal === oldVal){
-    console.log('no changed student!');
- }
- else{
-  console.log('changed student!');
- }
-}, true);
-       //$scope.$watch("student", function (newValue, oldValue) {
-        /*$scope.$watchCollection('student', function(newValue, oldValue) {
-    console.log('$watchCollection');
-    console.log(newValue.name+" && "+oldValue.name); 
+      console.log("newValue : ",newVal);
+      console.log("oldVal : ",oldVal); 
+      $scope.res = angular.equals(newVal, oldVal);
+      if($scope.res === true){
+        }else{ 
+        q.update(STUDENT_TABLE, keys, values,'id',$scope.studentId)
+        .then((data)=>{
+        $timeout(()=>{
+        $scope.resetStudent();
+        },0);
 
-  
-        if( (oldValue.name != newValue.name) || (oldValue.fatherName != newValue.fatherName) || (oldValue.motherName != newValue.motherName) || (oldValue.dob != newValue.dob) || (oldValue.address != newValue.address) || (oldValue.gender != newValue.gender) || (oldValue.phone != newValue.phone) )
-        {
-          console.log("Changed...");
-          q.update(STUDENT_TABLE, keys, values,'id',$scope.studentId)
-          .then((data)=>{
-          $timeout(()=>{
-          $scope.resetStudent();
-          },0);
-
-          })
-          .catch((err)=>{
-          console.error('err, student updation', err);
-          });
-          $scope.showToast();
-          $window.history.back();
-        }else{
-          console.log("no change");
-          
-        }
-    },true);*/
-     
-    };
-    $scope.showToast = function() {
-    var pinTo = $scope.getToastPosition();
-
-    $mdToast.show(
-      $mdToast.simple()
+        })
+        .catch((err)=>{
+        console.error('err, student updation', err);
+        });
+        $scope.showToast();
+        $window.history.back();
+      }
+      }, true);
+      };
+      
+      $scope.showToast = function() {
+        var pinTo = $scope.getToastPosition();
+        $mdToast.show(
+        $mdToast.simple()
         .textContent('Student Updated ...!')
         .position(pinTo )
         .hideDelay(2000)
-    );
-  };
+        );
+      };
 
   $scope.getToastPosition = function() {
     sanitizePosition();
-
     return Object.keys($scope.toastPosition)
       .filter(function(pos) { return $scope.toastPosition[pos]; })
       .join(' ');
