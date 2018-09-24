@@ -1,4 +1,4 @@
-reciept.controller('editStudentCtrl',  function($rootScope,$scope,$timeout,STUDENT_TABLE,$routeParams,GENDER,CLASS,$mdToast){
+reciept.controller('editStudentCtrl',  function($rootScope,$scope,$timeout,STUDENT_TABLE,$routeParams,GENDER,CLASS,$mdToast,$window){
   $scope.studentId = $routeParams.id;
   $scope.student = {name:'',fatherName:'', motherName:'',dob:'',address:'',gender:'',phone:'',email:'',className:'',deleted:0};
   $scope.gender = GENDER;
@@ -29,24 +29,51 @@ reciept.controller('editStudentCtrl',  function($rootScope,$scope,$timeout,STUDE
     $scope.submitStudent =(student)=> {
       let keys = Object.keys($scope.student);
       let values = Object.values($scope.student);
-      q.update(STUDENT_TABLE, keys, values,'id',$scope.studentId)
-      .then((data)=>{
-        $timeout(()=>{
-          $scope.resetStudent();
-        },0);
+      $scope.getStudent($scope.studentId);
+      $scope.$watch('student', function(newVal, oldVal){
+        console.log("newValue : ",newVal);
+        console.log("oldVal : ",oldVal);
+ if(newVal === oldVal){
+    console.log('no changed student!');
+ }
+ else{
+  console.log('changed student!');
+ }
+}, true);
+       //$scope.$watch("student", function (newValue, oldValue) {
+        /*$scope.$watchCollection('student', function(newValue, oldValue) {
+    console.log('$watchCollection');
+    console.log(newValue.name+" && "+oldValue.name); 
 
-      })
-      .catch((err)=>{
-        console.error('err, student updation', err);
-      });
-      $scope.showToast();
+  
+        if( (oldValue.name != newValue.name) || (oldValue.fatherName != newValue.fatherName) || (oldValue.motherName != newValue.motherName) || (oldValue.dob != newValue.dob) || (oldValue.address != newValue.address) || (oldValue.gender != newValue.gender) || (oldValue.phone != newValue.phone) )
+        {
+          console.log("Changed...");
+          q.update(STUDENT_TABLE, keys, values,'id',$scope.studentId)
+          .then((data)=>{
+          $timeout(()=>{
+          $scope.resetStudent();
+          },0);
+
+          })
+          .catch((err)=>{
+          console.error('err, student updation', err);
+          });
+          $scope.showToast();
+          $window.history.back();
+        }else{
+          console.log("no change");
+          
+        }
+    },true);*/
+     
     };
     $scope.showToast = function() {
     var pinTo = $scope.getToastPosition();
 
     $mdToast.show(
       $mdToast.simple()
-        .textContent('Student Updated!')
+        .textContent('Student Updated ...!')
         .position(pinTo )
         .hideDelay(2000)
     );
@@ -72,5 +99,6 @@ reciept.controller('editStudentCtrl',  function($rootScope,$scope,$timeout,STUDE
   }
 
     $scope.getStudent($scope.studentId);
+   
   }).constant('GENDER', ['Female','Male'])
 .constant('CLASS', ['Nursery','LKG','UKG','1','2','3','4','5','6','7','8','9','10','11','12']);
