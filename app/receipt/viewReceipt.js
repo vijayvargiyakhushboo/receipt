@@ -1,11 +1,12 @@
-reciept.controller('viewReceiptCtrl', function($rootScope ,$scope,RECEIPT_TABLE,$timeout,STUDENT_TABLE,$routeParams){
-  const {shell} = require('electron');
+reciept.controller('viewReceiptCtrl', function($rootScope ,$scope,RECEIPT_TABLE,$timeout,STUDENT_TABLE){
+  //const {shell} = require('electron');
   $scope.sortBy = function(propertyName) {
     $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
     $scope.propertyName = propertyName;
   };
 
   $scope.getReceipt = (tableName1,tableName2)=>{
+    //console.log("getReceipt");
     q.selectAllByTable(tableName1,tableName2)
     .then((rows)=>{
       if(rows)
@@ -23,10 +24,11 @@ reciept.controller('viewReceiptCtrl', function($rootScope ,$scope,RECEIPT_TABLE,
     .catch((error)=>{
       console.log('get receipt error:',error); 
     });
+    //console.log("rec: ",$scope.receipt);
   }  
 
   $scope.deleteReceipt = (eve,receipt)=>{
-      shell.beep()
+      shell.beep();
     $scope.confirmReceipt(receipt);
   }
 
@@ -35,15 +37,16 @@ reciept.controller('viewReceiptCtrl', function($rootScope ,$scope,RECEIPT_TABLE,
     console.log("confirmReceipt :"+$scope.receipt.id);
     let keys = ['deleted'];
     let values = [1];
-    console.log("confirmReceipt");
+    //console.log("confirmReceipt");
     q.update(RECEIPT_TABLE, keys, values, 'id', $scope.receipt.id)
     .then((data)=>{
       $timeout (()=>{
       },0)
     })
     .catch((err)=>{
-      console.error('err occured while insertion',err);
+      console.error('err occured while updation',err);
     });
+     $scope.getReceipt(RECEIPT_TABLE,STUDENT_TABLE);
   }
 
   $scope.getReceipt(RECEIPT_TABLE,STUDENT_TABLE);
