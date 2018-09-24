@@ -1,4 +1,4 @@
-reciept.controller('editStudentCtrl',  function($rootScope,$scope,$timeout,STUDENT_TABLE,$routeParams,GENDER,CLASS,$mdToast){
+reciept.controller('editStudentCtrl',  function($rootScope,$scope,$timeout,STUDENT_TABLE,$routeParams,GENDER,CLASS,$mdToast,$window){
   $scope.studentId = $routeParams.id;
   $scope.student = {name:'',fatherName:'', motherName:'',dob:'',address:'',gender:'',phone:'',email:'',className:'',deleted:0};
   $scope.gender = GENDER;
@@ -26,35 +26,44 @@ reciept.controller('editStudentCtrl',  function($rootScope,$scope,$timeout,STUDE
       },0)
       )};
 
-    $scope.submitStudent =(student)=> {
+      $scope.submitStudent =(student)=> {
       let keys = Object.keys($scope.student);
       let values = Object.values($scope.student);
-      q.update(STUDENT_TABLE, keys, values,'id',$scope.studentId)
-      .then((data)=>{
+      $scope.getStudent($scope.studentId);
+      $scope.$watch('student', function(newVal, oldVal){
+      console.log("newValue : ",newVal);
+      console.log("oldVal : ",oldVal); 
+      $scope.res = angular.equals(newVal, oldVal);
+      if($scope.res === true){
+        }else{ 
+        q.update(STUDENT_TABLE, keys, values,'id',$scope.studentId)
+        .then((data)=>{
         $timeout(()=>{
-          $scope.resetStudent();
+        $scope.resetStudent();
         },0);
 
-      })
-      .catch((err)=>{
+        })
+        .catch((err)=>{
         console.error('err, student updation', err);
-      });
-      $scope.showToast();
-    };
-    $scope.showToast = function() {
-    var pinTo = $scope.getToastPosition();
-
-    $mdToast.show(
-      $mdToast.simple()
-        .textContent('Student Updated!')
+        });
+        $scope.showToast();
+        $window.history.back();
+      }
+      }, true);
+      };
+      
+      $scope.showToast = function() {
+        var pinTo = $scope.getToastPosition();
+        $mdToast.show(
+        $mdToast.simple()
+        .textContent('Student Updated ...!')
         .position(pinTo )
         .hideDelay(2000)
-    );
-  };
+        );
+      };
 
   $scope.getToastPosition = function() {
     sanitizePosition();
-
     return Object.keys($scope.toastPosition)
       .filter(function(pos) { return $scope.toastPosition[pos]; })
       .join(' ');
@@ -72,5 +81,6 @@ reciept.controller('editStudentCtrl',  function($rootScope,$scope,$timeout,STUDE
   }
 
     $scope.getStudent($scope.studentId);
+   
   }).constant('GENDER', ['Female','Male'])
 .constant('CLASS', ['Nursery','LKG','UKG','1','2','3','4','5','6','7','8','9','10','11','12']);
